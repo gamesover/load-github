@@ -43,6 +43,6 @@ jobs:
           command: yarn test
       - run:
           name: code-coverage
-          command: './node_modules/.bin/nyc report --reporter=text-lcov'
+          command: yarn coverage
 
 
