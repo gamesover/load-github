@@ -45,6 +45,8 @@ class App extends Component {
   }
 
   loadGithubAccount = () => {
+    this.resetForm();
+
     const validForm = this.validateForm();
 
     if (!validForm)
