@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactTable from 'react-table';
+import Moment from 'react-moment';
 import _ from 'lodash';
 import './RepoList.css';
 
@@ -29,19 +30,27 @@ class RepoList extends Component {
       accessor: 'id'
     }, {
       Header: 'Name',
-      accessor: 'name'
+      accessor: 'name',
+      Cell: props => <span title={props.value}>{props.value}</span>
     }, {
       Header: 'Description',
-      accessor: 'description'
+      accessor: 'description',
+      Cell: props => <span title={props.value}>{props.value}</span>,
+      sortable: false
     }, {
       id: 'createdAt',
       Header: 'Created at',
-      accessor: d => d.created_at
+      accessor: 'created_at',
+      sortable: false,
+      Cell: props => <Moment format="YYYY/MM/DD">{props.value}</Moment>
     }, {
-      Header: 'Hide',
+      Header: '',
       accessor: '',
-      Cell: value => <button type="button" onClick={this.hideRow.bind(this, value)} className="btn btn-info">
-        Info</button>
+      sortable: false,
+      Cell: props => <button type="button"
+                             onClick={this.hideRow.bind(null, props.original.id)}
+                             className="btn btn-info">
+        Hide</button>
     }];
 
     return (
@@ -55,9 +64,9 @@ class RepoList extends Component {
     );
   }
 
-  hideRow = (event) => {
+  hideRow = (id) => {
     const updatedRepos = _.filter(this.state.repos, function (repo) {
-      return repo.id !== event.row.id;
+      return repo.id !== id;
     });
     const updatedHiddenRows = this.state.hiddenRows + 1
 
