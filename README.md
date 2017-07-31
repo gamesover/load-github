@@ -25,7 +25,6 @@ For user to load Github user repo list
 
 ### Known Issues ###
 * css styles are not perfect
-* date format is better to be handled by `moment` lib
 * react form is better to be handled by `redux-form` package
 
 ### Contribution guidelines ###
