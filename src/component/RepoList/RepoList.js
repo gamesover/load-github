@@ -16,7 +16,7 @@ class RepoList extends Component {
 
   componentWillReceiveProps(nextProps) {
     // You don't have to do this check first, but it can help prevent an unneeded render
-    if (nextProps.repos !== this.state.repos) {
+    if (JSON.stringify(nextProps.repos) !== JSON.stringify(this.props.repos)) {
       this.setState({
         repos: nextProps.repos,
         hiddenRows: 0
