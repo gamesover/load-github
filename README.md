@@ -23,9 +23,10 @@ For user to load Github user repo list
 * `yarn install` to install packages, `yarn start` to start react webpack server
 * make sure pass `CI`
 
-### Known Issues ###
+### Improvement ###
 * css styles are not perfect
 * react form is better to be handled by `redux-form` package
+* put form and table into redux store to make component stateless
 
 ### Contribution guidelines ###
 
