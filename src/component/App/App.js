@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button, Form, FormGroup, Label, Input, FormFeedback} from 'reactstrap';
 import _ from 'lodash';
 import './App.css';
+import RepoList from "../RepoList/RepoList";
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class App extends Component {
       loading: false,
       githubUsername: '',
       githubUsernameState: '',
-      githubUsernameFeedback: ''
+      githubUsernameFeedback: '',
+      repos: []
     };
   }
 
@@ -36,6 +38,7 @@ class App extends Component {
               Load Repos
             </Button>
           </Form>
+          <RepoList repos={this.state.repos}/>
         </div>
     );
   }
@@ -64,7 +67,7 @@ class App extends Component {
         .then(this.handleErrors)
         .then(response => response.json())
         .then(data => {
-          const result = _.map(data, (repository) => {
+          const repos = _.map(data, (repository) => {
             return {
               id: repository.id,
               name: repository.name,
@@ -73,7 +76,9 @@ class App extends Component {
             };
           });
 
-          console.log(result);
+          this.setState((prevState) => {
+            return {repos: repos};
+          });
 
           this.setLoadingState(false);
         })
