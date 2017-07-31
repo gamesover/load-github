@@ -47,10 +47,14 @@ class RepoList extends Component {
       Header: '',
       accessor: '',
       sortable: false,
-      Cell: props => <button type="button"
-                             onClick={this.hideRow.bind(null, props.original.id)}
-                             className="btn btn-info">
-        Hide</button>
+      Cell: props =>
+          <div className="text-center">
+            <button type="button"
+                    onClick={this.hideRow.bind(null, props.original.id)}
+                    className="btn btn-info">
+              Hide
+            </button>
+          </div>
     }];
 
     return (
@@ -58,8 +62,11 @@ class RepoList extends Component {
           <ReactTable
               data={this.state.repos}
               columns={columns}
+              className="-striped -highlight"
+              defaultPageSize={10}
+              minRows={0}
           />
-          <div>Not showing {this.state.hiddenRows} repos</div>
+          <h2 className="text-center">Not showing {this.state.hiddenRows} repos</h2>
         </div>
     );
   }

@@ -98,6 +98,13 @@ class App extends Component {
   resetForm() {
     this.setFormGitHubUsernameResponse('', '');
     this.setLoadingState(false);
+    this.clearRepoList();
+  }
+
+  clearRepoList() {
+    this.setState((prevState) => {
+      return {repos: []};
+    });
   }
 
   setLoadingState(state = true) {
